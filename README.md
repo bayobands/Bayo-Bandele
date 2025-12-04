@@ -1,12 +1,12 @@
---Code Smells I Found
-Bad Varibake Names
-The original code used names like c, a, b, and h.
-These don’t describe what the values actually store, which makes the program harder to read.
-Changed Varible Name.
-2. Repeated Code
-All three buttons (increment, decrement, reset) repeated the same steps:
-update counter display
-update document title
-change background color
-This is classic duplicate code.
-CHnaged it to where I only kept one and deleted the others.
+# Code Smells
+
+Duplicated Code, long function, bad comments (too many), unclear variable names, speculative generality(start function)
+
+Refactored: renamed variables to descriptive names to clearly identify the purpose of each variable, created for each loop to implement each button (made code data oriented),deleted redundant start() function that may have been useful on later iterations but unecessarily creates another function, removed unnecessary comments to improve code readability
+
+`Collaborators:
+jkimpear@ucsc.edu(Joshua Kim-Pearson)
+stchhung@ucsc.edu(Stanley Hung)
+emart149@ucsc.edu(Elijah Martiniano)
+Blvance@ucsc.edu(Brody Vance)
+mdamdinb@ucsc.edu(Miga Damdinbazar)`

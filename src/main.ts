@@ -1,44 +1,77 @@
-// CMPM 121 Smelly Code Activity
+// CMPM 121 – Refactored Counter App
 
+// ------------------------------
+// CONSTANTS
+// ------------------------------
+const INCREMENT_ID = "increment";
+const DECREMENT_ID = "decrement";
+const RESET_ID = "reset";
+const COUNTER_ID = "counter";
+const TITLE_TEXT = "CMPM 121 Project";
+
+// ------------------------------
+// APPLICATION STATE
+// ------------------------------
 let counter = 0;
 
-function setup() {
-  // Create the HTML for the counter
+// ------------------------------
+// UI SETUP
+// ------------------------------
+function setupUI() {
   document.body.innerHTML = `
-    <h1>CMPM 121 Project</h1>
-    <p>Counter: <span id="counter">0</span></p>
-    <button id="increment">Click Me!</button>
-    <button id="decrement">Decrement</button>
-    <button id="reset">Reset</button>
+    <h1>${TITLE_TEXT}</h1>
+    <p>Counter: <span id="${COUNTER_ID}">0</span></p>
+    <button id="${INCREMENT_ID}">Increment</button>
+    <button id="${DECREMENT_ID}">Decrement</button>
+    <button id="${RESET_ID}">Reset</button>
   `;
+}
 
-  const incrementButton = document.getElementById("increment")!;
-  const decrementButton = document.getElementById("decrement")!;
-  const resetButton = document.getElementById("reset")!;
-  const counterElement = document.getElementById("counter")!;
+// ------------------------------
+// UPDATE THE DISPLAY
+// ------------------------------
+function updateUI() {
+  const counterDisplay = document.getElementById(COUNTER_ID);
+  if (!counterDisplay) return;
 
-  // Check if any element is missing, then exit the function
-  if (!incrementButton || !decrementButton || !resetButton || !counterElement) {
-    return;
-  }
+  counterDisplay.textContent = String(counter);
+  document.title = `Clicked ${counter}`;
+  document.body.style.backgroundColor = counter % 2 ? "pink" : "lightblue";
+}
 
-  const buttonList = [incrementButton, decrementButton, resetButton];
+// ------------------------------
+// EVENT SETUP
+// ------------------------------
+function setupEvents() {
+  const incButton = document.getElementById(INCREMENT_ID);
+  const decButton = document.getElementById(DECREMENT_ID);
+  const resetButton = document.getElementById(RESET_ID);
 
-  buttonList.forEach((element) => {
-    element.addEventListener("click", () => {
-      if (element.id == "decrement") {
-        counter--;
-      } else if (element.id == "increment") {
-        counter++;
-      } else {
-        counter = 0;
-      }
-      counterElement.innerHTML = `${counter}`;
-      document.title = "Clicked " + counter;
-      // Change the background color based on even/odd count
-      document.body.style.backgroundColor = counter % 2 ? "pink" : "lightblue";
-    });
+  if (!incButton || !decButton || !resetButton) return;
+
+  incButton.addEventListener("click", () => {
+    counter++;
+    updateUI();
+  });
+
+  decButton.addEventListener("click", () => {
+    counter--;
+    updateUI();
+  });
+
+  resetButton.addEventListener("click", () => {
+    counter = 0;
+    updateUI();
   });
 }
 
-setup();
+// ------------------------------
+// APP STARTER
+// ------------------------------
+function start() {
+  setupUI();
+  setupEvents();
+  updateUI();
+}
+
+start();
