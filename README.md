@@ -1,12 +1,19 @@
-# Code Smells
+## Code Smells
 
-Duplicated Code, long function, bad comments (too many), unclear variable names, speculative generality(start function)
+# Bad Varibale Names
 
-Refactored: renamed variables to descriptive names to clearly identify the purpose of each variable, created for each loop to implement each button (made code data oriented),deleted redundant start() function that may have been useful on later iterations but unecessarily creates another function, removed unnecessary comments to improve code readability
+The original code used names like c, a, b, and h. These don’t describe what the values actually store, which makes the program harder to read.
 
-`Collaborators:
-jkimpear@ucsc.edu(Joshua Kim-Pearson)
-stchhung@ucsc.edu(Stanley Hung)
-emart149@ucsc.edu(Elijah Martiniano)
-Blvance@ucsc.edu(Brody Vance)
-mdamdinb@ucsc.edu(Miga Damdinbazar)`
+No more c, b, or a. Everything has meaningful names.
+
+# Duplicate Code
+
+All three buttons (increment, decrement, reset) repeated the same steps: update counter display update document title change background color.
+
+All three buttons use updateUI() instead of repeating the same logic.
+
+Functions are short and focused
+setupUI() builds the DOM.
+setupEvents() wires buttons.
+updateUI() updates visuals.
+start() orchestrates the app.
